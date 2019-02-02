@@ -1,0 +1,332 @@
+<div class="wrapper">
+        <div id="gridSystemModal" id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body px-0 py-4 px-md-5">
+                            <div class="container container-md-fluid">
+                                <div class="row">
+                                    <div class="col text-center pb-3">
+                                        <h2>Congratulations!</h2>
+                                        <p>
+                                            <strong>You just got lucky! And we have been able to register you with the BEST broker from this sector.
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col px-5">
+                                            <div class="row">
+                                                <div class="col pb-lg-0 pb-4 d-flex align-items-center justify-content-center">
+                                                    <img class="broker img-fluid" [src]="broker.logo">
+                                                </div>
+                                                <div class="col-12 col-lg">
+                                                    <div class="row d-block mb-4 d-flex flex-row">
+                                                        <div class="col-auto">
+                                                            <img src="./assets/img/Shield.png">
+                                                        </div>
+                                                        <div class="col">
+                                                            <h3>Your SECURITY is Our Priority</h3>
+                                                            <p class="text-justify">Per their terms, {{ broker.name }} takes strict measures to protect their client's holdings and their privacy
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row d-block mb-4 d-flex flex-row">
+                                                        <div class="col-auto">
+                                                            <img src="./assets/img/Cash.png">
+                                                        </div>
+                                                        <div class="col">
+                                                            <h3>Greater revenue</h3>
+                                                            <p class="text-justify">{{ broker.name }} offers up to 88% profitability per successful operation!
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <iframe [src]="broker.iframeURL" frameborder=0 width=1 height=1></iframe>
+                                        <button class="btn btn-lg" (click)="autologin()">Click here to start investigating</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  <nav class="navigation">
+      <div class="container">
+          <div class="row justify-content-between align-items-center">
+              <div class="col-12 text-center">
+                  <div class="logo">
+                      <a href="/">
+                          <img src="https://cannabismillionaire.net/images/logo.png" class="img-fluid" alt="Cannabis Millionaire"
+                              title="Cannabis Millionaire">
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </nav>
+  <main class="main">
+      <section class="intro">
+          <div class="container">
+              <div class="row align-items-center">
+                  <div class="col-12 col-lg-8">
+                      <article class="intro-text">
+                          <h1>
+                              <small>
+                                  Opportunities like this only show up once every few decades….
+                              </small>
+                              The biggest and most
+                              <strong><span>profitable revolution</span></strong> in
+                              decades has arrived...!
+                          </h1>
+                          <p>
+                              Check out the video below, where we will explain how the <strong>upcoming legalization
+                                  of<br class="d-none d-lg-block" />
+                                  Cannabis is the opportunity you should take advantage of right now:</strong>
+                          </p>
+                          <div class="embed-responsive-video">
+                              <div class="embed-responsive-item" id="main-video">
+                                    <video width="100%" height="100%" controls autoplay muted>
+                                            <source src="../../assets/media/271e76c913c1cc26d9bb842195a7c715.mp4" type="video/mp4">
+                                          Your browser does not support the video tag.
+                                          </video>
+                              </div>
+                          </div>
+                      </article>
+                  </div>
+                  <div class="col-12 col-lg-4 optin-wrap form-container" id="join">
+                          <div class="spinner-container" *ngIf="isLoading">
+                                  <div class="check_mark" *ngIf="isCorrect">
+                                      <div class="sa-icon sa-success animate">
+                                        <span class="sa-line sa-tip animateSuccessTip"></span>
+                                        <span class="sa-line sa-long animateSuccessLong"></span>
+                                        <div class="sa-placeholder"></div>
+                                        <div class="sa-fix"></div>
+                                      </div>
+                                    </div>
+                                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                              </div>
+                      <form action="" class="optin">
+                          <h2>
+                              Join Us
+                              <strong>
+                                  NOW
+                              </strong>
+                          </h2>
+                          <div *ngIf="errors">
+                            <div class="col-md-12 registration-error" *ngFor="let error of errors"><span class="error-list">{{error}}</span></div>
+                          </div>
+                          
+                          <form [formGroup]="formData" (ngSubmit)="onSubmit()" class="intgrtn-form-signup">
+                              <div class="intgrtn-input-holder">
+                                  <input class="intgrtn-input" type="text" formControlName="firstName" placeholder="FIRST NAME"
+                                      required>
+                              </div>
+                              <div class="intgrtn-input-holder">
+                                  <input class="intgrtn-input" type="text" formControlName="lastName" placeholder="LAST NAME"
+                                      required>
+                              </div>
+                              <div class="intgrtn-input-holder">
+                                  <input class="intgrtn-input" type="text" formControlName="email" placeholder="EMAIL"
+                                      required>
+                              </div>
+                              <div class="intgrtn-input-holder">
+                                  <input class="intgrtn-input" type="password" formControlName="password" placeholder="PASSWORD"
+                                      required>
+                              </div>
+                              <div class="intgrtn-input-holder">
+                                  <div class="intgrtn-input-group">
+                                      <input class="intgrtn-input intgrtn-input-area-code" type="text"
+                                          formControlName="code" [value]="countryCode">
+                                      <input class="intgrtn-input intgrtn-input-phone" type="text" formControlName="phone"
+                                          placeholder="PHONE" required>
+                                  </div>
+
+                              </div>
+
+
+                              <div class="intgrtn-btn-submit-holder">
+                                  <button type="submit" [disabled]="!formData.valid" class="intgrtn-btn-submit">Next</button>
+                              </div>
+
+                          </form>
+                      </form>
+
+                  </div>
+              </div>
+          </div>
+      </section>
+      <section class="money-making" id="opportunity">
+          <div class="container">
+              <div class="row">
+                  <div class="col-12 col-xl-7 offset-xl-5">
+                      <img src="images/tv-news.jpg" class="img-fluid d-xl-none poster" alt="" title="">
+                      <h2 class="title">
+                          The legalization of Cannabis
+                          across North America
+                          provides us with the
+                          money-making opportunity
+                          we’ve all been waiting for…
+                      </h2>
+                      <p>
+                          The key to success is jumping on opportunities early on...
+                          We are constantly confronted with opportunities, wondering what to do.
+                          The question you have to ask yourself is; do you want to keep being the one that says 'if
+                          only I bought...'?
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <section class="about">
+          <div class="container">
+              <div class="row">
+                  <div class="col-12">
+                      <img src="images/doctor.jpg?v=1" class="img-fluid poster" alt="">
+                      <p>
+                          We've all seen many opportunities come and go, and each of those made a lot of people a lot
+                          of money,
+                          Many times we said to ourselves in hindsight 'I could have done that'...
+                          Well, the good thing is the world never stops and so now something big is yet again about
+                          to happen...
+                      </p>
+                      <p>
+                          The legalization of Cannabis across North America...
+                          At first glance this might not sound like much, but this is going to be the biggest and
+                          most profitable revolution in decades...
+                      </p>
+                      <p>
+                          Ask yourself this; knowing the legalization is happening, combined with the popularity of
+                          cannabis among so many people worldwide:
+                          Isn't it safe to say cannabis companies will not only pop up all over the place, but their
+                          value and market will skyrocket the coming years?...
+                      </p>
+                      <p>
+                          Doesn't this sound like an incredible opportunity?... Now we know what you're thinking:
+                          this is only for the big investment companies,
+                      </p>
+                      <p>
+                          But that's where you'd miss out on the opportunity; the investment business has long
+                          diversified between big as well as smalltime, even single home-based investors;
+                      </p>
+                      <p>
+                          These days you can purchase CFD's, which means a 'Contract for Difference', from the
+                          comfort of your own home.
+                          These are agreements in which you predict the value of a share over a time-period.
+                          So let's say you predict Cannabis companies shares will grow; you would then purchase a
+                          Cannabis company CFD predicting the share's will go up within a certain timeframe.
+                          Now if they do, you will make a lot of money...
+                          This is why in many cases buying CFD’s are more profitable than shares; as you can actually
+                          leverage the small amounts of money you invest, allowing you to make a lot more money, much
+                          quicker, as opposed to buying shares which are expensive, limited and take a lot of time to
+                          grow.
+                      </p>
+                      <p>
+                          The world of investment has evolved, and these new forms of online investment allow
+                          small-time investors to invest with pocket-change compared to the big boys,
+                      </p>
+                      <p>
+                          Successful investors religiously read the news to keep an eye out for upcoming trends, but
+                          only once every few decades does something this big come along
+                      </p>
+                      <p>
+                          This is the time for you to take a chance, and especially since the investment amount is so
+                          low, and the risk is minimal, yet the reward could change your life forever; it’s a
+                          no-brainer to jump on this opportunity,
+                      </p>
+                      <p>
+                          Don't be that person wondering what could have been; embrace the opportunities as they come
+                          by, and you too could live life to the fullest.
+                      </p>
+                      <p>
+                          Register now and take your first step towards your new independent life...
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <section class="cfd" id="cfd">
+          <div class="container">
+              <div class="row">
+                  <div class="col-12 col-lg-9 offset-lg-3">
+                      <h2 class="title">
+                          What is a CFD ‘Contract
+                          for Difference’?
+                      </h2>
+                      <p>
+                          As briefly discussed earlier on, CFD’s are agreements in which you predict the value of a
+                          share over a time-period.
+                      </p>
+                      <p>
+                          So let's say you predict Cannabis companies shares will grow; you would then purchase a
+                          Cannabis company CFD predicting the share's will go up within a certain timeframe.
+                      </p>
+                      <p>
+                          Now if they do, you will make a lot of money...
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <section class="investment" id="investments">
+          <div class="container">
+              <div class="row">
+                  <div class="col-12 col-xl-10 offset-xl-1 text-xl-center">
+                      <h2 class="title">
+                          Why to Invest in ‘Contract
+                          for Difference’ CFD’s Now
+                      </h2>
+                      <p>
+                          The whole idea behind investing money, is to ensure your investment grows based on the
+                          success of the company / asset you invested in right?
+                          Well, <strong>what do you think the odds are Cannabis companies will grow</strong> now that
+                          the legalization of Cannabis is happening throughout Canada and the US?...
+                          It’s safe to say this will mean <strong>spectacular growth</strong> for these companies.
+                      </p>
+                      <p>
+                          Now we all know big investment companies will profit, how do the rest of us use this
+                          <strong>to our advantage?</strong>
+                      </p>
+                      <p>
+                          Well, as explained above there’s a thing called ‘<strong>CFD trading</strong>’ which is the
+                          perfect fit.
+                          CFD’s have ‘leverage’ meaning the <strong>potential profits can grow to enormous return</strong>
+                          on investments, considering the CFD market is not bound by minimum amounts of capital it is
+                          the perfect
+                          investment system for smalltime / home-based investors.
+                      </p>
+                      <p>
+                          Considering Cannabis companies are sure to grow in volume and amount, and having a
+                          non-intrusive low-investment requirement yet high potential payout, this is the perfect way
+                          to create that independent wealthy life you seek.
+                      </p>
+                  </div>
+                  <div class="col-12 col-xl-8 offset-xl-2">
+                      <a href="#join" class="btn btn-cta anchor">Join the revolution!</a>
+                  </div>
+              </div>
+          </div>
+      </section>
+  </main>
+  <footer class="footer">
+      <div class="footer-menu">
+          <div class="container">
+              <ul class="footer-list">
+                  <li>
+                  <li><a href="#" data-intgrtn-link-agreements="2">Risk Disclaimer</a></li>
+                  <li><a href="#" data-intgrtn-link-agreements="3">Privacy Policy</a></li>
+                  <li><a href="#" data-intgrtn-link-agreements="1">Website Agreement</a></li>
+                  <li><a data-intgrtn-link-report-abuse="" href="" class="">Report Abuse</a></li>
+                  <li><a data-intgrtn-link-contact-us="" href="" class="">Contact Us</a></li>
+              </ul>
+              <div class="footer-disclaimer" style="">
+                  <div data-intgrtn-agreements="" data-intgrtn-type="4" style="color: #000000;"></div>
+              </div>
+          </div>
+      </div>
+  </footer>
+</div>

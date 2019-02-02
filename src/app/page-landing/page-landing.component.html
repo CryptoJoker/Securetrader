@@ -1,0 +1,392 @@
+<ng-container class="landing">
+  <div id="gridSystemModal" id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body px-0 py-4 px-md-5">
+          <div class="container loading align-items-center justify-content-center p-5" *ngIf="modal.isLoading">
+            <div class="spinner"></div>
+          </div>
+          <div class="container-fluid p-0" *ngIf="!modal.isLoading && !modal.success">
+            <div class="row">
+              <div class="col d-flex flex-column align-items-center justify-content-center">
+                <div class="alert alert-danger">{{ broker.message }}</div>
+                <button class="mx-auto btn btn-danger" (click)="dismissModal()">{{ str.common?.dismiss }}</button>
+              </div>
+            </div>
+          </div>
+          <div class="container container-md-fluid" *ngIf="!modal.isLoading && modal.success">
+            <div class="row">
+              <div class="col text-center pb-3">
+                <h2>{{ str.dialog?.congratulations }}</h2>
+                <p>
+                  <strong>{{ str.dialog?.youJustGotLuckyAndWeveBeenAbleToRegisterYouWithTheBESTbrokerFromThisSector }}</strong>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col px-5">
+                <div class="row">
+                  <div class="col pb-lg-0 pb-4 d-flex align-items-center justify-content-center">
+                    <img class="broker img-fluid" [src]="broker.logo">
+                  </div>
+                  <div class="col-12 col-lg">
+                    <div class="row d-block mb-4 d-flex flex-row">
+                      <div class="col-auto">
+                        <img src="./assets/img/Shield.png">
+                      </div>
+                      <div class="col">
+                        <h3>{{ str.dialog?.yourSECURITYisOurPriority }}</h3>
+                        <p class="text-justify">{{ str.dialog?.perTheirTerms }}, {{ broker.name }} {{
+                          str.dialog?.takesStrictsMeasuresToProtectTheirClientsHoldingsAndTheirPrivacy
+                          }}</p>
+                      </div>
+                    </div>
+                    <div class="row d-block mb-4 d-flex flex-row">
+                      <div class="col-auto">
+                        <img src="./assets/img/Cash.png">
+                      </div>
+                      <div class="col">
+                        <h3>{{ str.dialog?.greaterPayments }}</h3>
+                        <p class="text-justify">{{ broker.name }} {{
+                          str.dialog?.offersUpTo88profitabilityPerSuccessfulOperation }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col text-center">
+                <button class="btn btn-lg" (click)="autologin()">{{ str.dialog?.clickHereToStartInvesting }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section-one">
+
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid py-1 py-md-3">
+        <div class="container">
+          <div class="row">
+            <div class="col d-flex align-items-center justify-content-center justify-content-sm-center justify-content-md-start">
+              <a class="navbar-brand" href="#">
+                <img src="./assets/img/logo.png" class="img-fluid d-inline-block align-top" alt="">
+              </a>
+            </div>
+            <div class="d-none d-sm-none d-md-flex col-auto align-items-end justify-content-center flex-column pr-0">
+              <div class="d-block">{{ str.header?.exclusiveFor }}</div>
+              <div class="d-block font-weight-bold">{{ selfInfo.country | uppercase }}</div>
+            </div>
+            <div class="d-none d-sm-none d-md-flex col-auto align-items-center">
+              <span [class]="selfInfo.flagClass"></span>
+            </div>
+            <div class="d-none d-sm-none d-md-flex col-3 flex-row earnings align-items-center pl-1" *ngIf="person.photo != null">
+              <div class="col-3 pl-0 pr-0 py-1">
+                <img class="photo img-fluid" [src]="person.photo" height="64px">
+              </div>
+              <div class="col-10 pl-0 pr-5 amount">
+                <div class="name text-center font-weight-bold pb-0 pb-lg-1">
+                  <span class="d-inline-block">{{ person.name }}</span>
+                  <span class="d-none d-sm-none d-md-none d-lg-inline-block">&nbsp; {{ str.header?.justWon }}</span>
+                </div>
+                <div class="value text-center font-weight-bold pt-1">${{ person.amount }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="content text-center pt-3 pt-md-4 pt-lg-5 pb-5">
+      <h2 class="font-weight-bold">{{ str.section1?.bitcoinIsMakingPeopleRich }}</h2>
+      <h3>{{ str.section1?.andYouCanBeTheNextMillionaire }}</h3>
+      <h4 class="font-weight-light pb-2 pb-lg-5 pb-md-4">{{ str.section1?.lookWhatFamousPeopleLike }}
+        <span class="text-success font-weight-bold">{{ str.section1?.billGates }}</span> {{ str.common?.and }}
+        <span class="text-success font-weight-bold">{{ str.section1?.ericSchmidt }}</span> {{ str.section1?.haveToSay
+        }}</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-7 col-sm-12 col-lg-8">
+            <div class="embed-container">
+              <video class="bitcoin-video" id="bitcoin-video" src="./assets/media/bitcoin.mp4" controls="" controlslist="nodownload"
+                autoplay="" width="100%" poster="./assets/img/videothumbnail.jpg" *ngIf="selfInfo.subtitlePath">
+                <track kind="subtitles" srclang="es" [src]="selfInfo.subtitlePath" default="">
+              </video>
+            </div>
+          </div>
+          <div class="col form-wrapper d-flex flex-column mt-4 mx-3 mx-md-0 mt-md-0">
+            <div class="loading align-items-center justify-content-center p-4" *ngIf="formData.isLoading">
+              <div class="spinner"></div>
+            </div>
+            <div class="validation align-items-center justify-content-center p-4" *ngIf="formData.showDialog">
+              <ul>
+                <li class="alert alert-danger px-5 py-3" *ngFor="let validation of formData.validations">{{ validation
+                  }}</li>
+                <li>
+                  <button class="btn btn-danger" (click)="dismissDialog()">{{ str.common?.dismiss }}</button>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-auto form-container p-4 pb-5">
+              {{ str.form?.startChanging }}
+              <span class="text-success">{{ str.form?.yourLifeToday }}</span>
+            </div>
+            <div class="col-auto form-content" [ngClass]="{ 'col2': pageNumber == 2 }">
+              <div class="steps">
+                <ul>
+                  <li class="col d-flex align-items-center justify-content-center" [ngClass]="{ 'active': pageNumber == 0, 'completed': pageNumber > 0 }"
+                    (click)="backToPage(0)">{{ pageNumber > 0 ? '✓' : '1' }}</li>
+                  <li class="col d-flex align-items-center justify-content-center" [ngClass]="{ 'active': pageNumber == 1, 'completed': pageNumber > 1 }"
+                    (click)="backToPage(1)">{{ pageNumber > 1 ? '✓' : '2' }}</li>
+                  <li class="col d-flex align-items-center justify-content-center" [ngClass]="{ 'active': pageNumber == 2 }">3</li>
+                </ul>
+              </div>
+              <div class="form-row pt-5 px-3" [hidden]="!(pageNumber == 0)">
+                <div class="form-group col-12">
+                  <input class="form-control" type="text" name="firstName" [placeholder]="str.form?.name" [(ngModel)]="formData.firstName">
+                </div>
+                <div class="form-group col-12">
+                  <input class="form-control" type="text" name="lastName" [placeholder]="str.form?.lastName"
+                    [(ngModel)]="formData.lastName">
+                </div>
+                <div class="form-group col-12">
+                  <input class="form-control" type="email" name="" [placeholder]="str.form?.email" [(ngModel)]="formData.email">
+                </div>
+                <div class="form-group col-12">
+                  <button class="btn btn-next p-3" (click)="next()">{{ str.form?.next }} ➜</button>
+                </div>
+              </div>
+              <div class="form-row pt-5 px-3" [hidden]="!(pageNumber == 1)">
+                <div class="form-group col-12">
+                  <input class="form-control" type="password" name="password" [placeholder]="str.form?.password"
+                    [(ngModel)]="formData.password">
+                </div>
+                <div class="form-group col-12">
+                  <input class="form-control" type="password" name="passwordRepeat" [placeholder]="str.form?.passwordRepeat"
+                    [(ngModel)]="formData.passwordRepeat">
+                </div>
+                <div class="form-group col-12">
+                  <button class="btn btn-next p-3" (click)="next()">{{ str.form?.next }} ➜</button>
+                </div>
+              </div>
+              <div class="form-row pt-5 px-3 justify-content-end align-items-end" [ngClass]="{ 'd-flex': pageNumber == 2 }"
+                [hidden]="!(pageNumber == 2)">
+                <div class="form-group col-12">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <button class="form-control dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span [class]="currentCountry.class"></span> +{{ currentCountry.countryCode }}
+                      </button>
+                      <div class="dropdown-menu">
+                        <button class="dropdown-item px-1 py-2" *ngFor="let country of countries" (click)="selectCountry(country)">
+                          <span [class]="country.class"></span>&nbsp;
+                          <span class="country-name">(+{{ country.countryCode }}) {{ country.name }}</span>
+                        </button>
+                      </div>
+                    </div>
+                    <input type="tel" name="phone" class="form-control" [placeholder]="str.form?.phone" [(ngModel)]="formData.phone">
+                  </div>
+                  <button class="btn btn-next p-3" (click)="submit()">{{ str.form?.registerNow }}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="section-two py-3 pb-5">
+    <div class="bidask-wrapper">
+      <div class="bidask container py-3">
+        <div class="row">
+          <div class="col-12 col-md-auto d-flex align-items-center mx-auto ml-lg-0 flex-wrap justify-content-around">
+            <img class="mx-3 pt-3 pt-md-0" src="./assets/img/bitgo.png">
+            <img class="mx-3 pt-3 pt-md-0" src="./assets/img/norton.png">
+            <img class="mx-3 pt-3 pt-md-0" src="./assets/img/secure-trading.png">
+            <img class="mx-3 pt-3 pt-md-0" src="./assets/img/mcafee.png">
+          </div>
+          <div class="col-auto ml-auto ml-md-auto mr-md-0 pt-4 pt-lg-0 bid d-flex align-items-center">
+            <span class="text">{{ str.section2?.bid }}</span>
+            <span class="amount mx-2">$326.56</span>
+            <span class="arrow">▲</span>
+          </div>
+          <div class="col-auto mr-auto mr-md-auto mr-lg-0 ml-md-0 pt-4 pt-lg-0 ask d-flex align-items-center">
+            <span class="text">{{ str.section2?.ask }}</span>
+            <span class="amount mx-2">$329.52</span>
+            <span class="arrow">▼</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container content text-center pb-2 pt-4 py-lg-5">
+      <h2 class="pb-4">
+        <span>{{ str.section2?.joinUsAndStartGettingRichWith }}</span>
+        <span class="bitcoinTrader">&nbsp;{{ str.section2?.bitcoinTrader }}</span>
+      </h2>
+      <p>{{
+        str.section2?.theBitcoinTraderIsAGroupReservedExclusivelyToPeopleWhoJumpedOnTheInsaneReturnsThatBitcoinOffersAndHaveQuietlyAmassedAFortuneInDoingSo
+        }}</p>
+      <p>{{
+        str.section2?.bitcoinTraderMembersEnjoyRetreatsAroundTheWorldEveryMonthWhileTheyMakeMoneyOnTheirLaptopWithJustAFewMinutesOfWorkEveryDay
+        }}</p>
+    </div>
+  </section>
+
+  <section class="section-three pt-4">
+    <div class="container">
+      <div class="row align-items-start">
+        <div class="col-12 col-lg d-flex">
+          <div class="card py-3 px-5 mt-0 mb-4 my-lg-0 align-items-center text-center">
+            <img src="./assets/img/join1.png" width="71px" height="71px" class="my-4">
+            <h4 class="mb-4">{{ str.section3?.LaserAccuratePerformance }}</h4>
+            <p>{{
+              str.section3?.ThereIsNoOtherTradingAppInTheWorldThatPerformsAtThe994LevelOfAccuracyThatTheBitcoinTraderIsAbleToHitThatsWhyOurMembersFromAroundTheWorldTrustUsToDoubleTripleAndQuadrupleTheirHardearnedMoney
+              }}</p>
+          </div>
+        </div>
+        <div class="col-12 col-lg d-flex">
+          <div class="card py-3 px-5 my-0 align-items-center text-center">
+            <img src="./assets/img/join2.png" width="71px" height="71px" class="my-4">
+            <h4 class="mb-4">{{ str.section3?.SuperiorTechnology }}</h4>
+            <p>{{
+              str.section3?.TheBitcoinTraderSoftwareHasBeenCreatedUsingTheMostAdvancedProgrammingTheTradingWorldHasEverSeenTheSoftwareIsAheadOfTheMarketsBy001SecondsAndIfYouKnowAnythingAboutTradingYouKnowThisIsAHugeDealThistimeLeapMakesTheSoftwareTheMostConsistentTradingAppOnThePlanet
+              }}</p>
+          </div>
+        </div>
+        <div class="col-12 col-lg d-flex">
+          <div class="card py-3 px-5 mt-4 my-lg-0 align-items-center text-center">
+            <img src="./assets/img/join3.png" width="71px" height="71px" class="my-4">
+            <h4 class="mb-4">{{ str.section3?.AwardWinningTradingApp }}</h4>
+            <p>{{
+              str.section3?.TheBitcoinTraderAppHasWonANumberOfAwardsTheMostRecentAwardWeHaveHadTheHonorOfReceivingIsGetting1InTheTradingSoftwareCategoryForTheUSTradingAssociation
+              }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-four">
+    <div class="trans">
+      <div class="container">
+        <div class="row">
+          <div class="offset-md-1 col-sm-11">
+            <p>{{ str.section4?.hearFromOurMembersWhoRelyOnOurSoftwareToFundTheirLuxuryLifestyles }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul>
+      <li class="testimonial-1"></li>
+      <li class="testimonial-2"></li>
+      <li class="testimonial-3"></li>
+      <li class="testimonial-4"></li>
+      <li class="testimonial-5"></li>
+    </ul>
+  </section>
+
+  <section class="section-five" *ngIf="people.length > 0">
+    <div class="container d-flex flex-column">
+      <div class="row">
+        <div class="testimonial col-lg-12 col-xl p-4" *ngFor="let i of testimonialsOrder">
+          <div class="row no-gutters justify-content-center">
+            <div class="col-auto">
+              <img class="photo" [src]="people[i].photo" height="96px">
+            </div>
+            <div class="col-auto pl-3 d-flex flex-column justify-content-center">
+              <div class="name pb-1">{{ people[i].name }}</div>
+              <div class="location">{{ people[i].region }}</div>
+            </div>
+          </div>
+          <div class="row pt-3">
+            <div class="col text">
+              "{{ people[i].testimonial }}"
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-six">
+    <div class="container pt-5">
+      <h2>{{ str.section6?.howItWorks }}</h2>
+      <div class="row">
+        <div class="col-12 col-md text-center p-4">
+          <img src="./assets/img/step1.png">
+          <p class="step pt-3">{{ str.section6?.step1 }}</p>
+          <p class="action">{{ str.section6?.fillOutTheRegistrationFormOnThisPage }}</p>
+          <p class="description">{{
+            str.section6?.onceYourRegistrationIsAcceptedYouWillAutomaticallyBecomeTheNewestMemberOfTheBitcoinTraderThisMeansYouWillGetToClaimOurProprietaryBitcoinTradingSoftwareForFree
+            }}</p>
+        </div>
+        <div class="col-12 col-md text-center p-4">
+          <img src="./assets/img/step2.png">
+          <p class="step pt-3">{{ str.section6?.step2 }}</p>
+          <p class="action">{{ str.section6?.fundYourAccount }}</p>
+          <p class="description">{{
+            str.section6?.likeAnyBusinessYouNeedWorkingCapitalToGetStartedSoToStartProfitingWithTheBitcoinTraderYouMustInvestAnyAmountYouDesireOf250OrMore
+            }}</p>
+        </div>
+        <div class="col-12 col-md text-center p-4">
+          <img src="./assets/img/step3.png">
+          <p class="step pt-3">{{ str.section6?.step3 }}</p>
+          <p class="action">{{ str.section6?.startProfiting }}</p>
+          <p class="description">{{
+            str.section6?.clickTradeToEnjoyPreciseAndAccurateHandsfreeTradingPoweredByOurAwardwinningAlgorithmYouCanAlsoSetTheTradingToManualIfYouPreferToTradeOnYourOwn
+            }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-seven pt-2">
+    <div class="container-wrapper pb-5">
+      <div class="container">
+        <h1 class="text-center pt-5 pb-3">{{ str.section7?.frequentlyAskedQuestions }}</h1>
+        <ng-container *ngFor="let faq of faqs">
+          <div class="media pt-4">
+            <div class="media-left pr-4">
+              <img src="./assets/img/q.png" alt="Question">
+            </div>
+            <div class="media-body">
+              <h2>{{ faq.q }}</h2>
+              <p>{{ faq.a }}</p>
+            </div>
+          </div>
+          <hr>
+        </ng-container>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-eight py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <button class="btn btn-start" (click)="scrollTop()">{{ str.section8?.getStartedNow }}</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-nine">
+    <div class="container">
+      <div class="row">
+        <div class="col text-center py-3 pt-4">
+          <img class="img-responsive" src="./assets/img/footer-logo.png">
+          <p class="pt-3">Copyright © 2017 Bitcoin Trader. All Right Reserved.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</ng-container>
